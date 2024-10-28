@@ -1,0 +1,13 @@
+mount n: E:\Sem3\NASM
+
+n:
+
+nasm ex01.asm -o ex01.com -l ex01.lst
+
+afd ex01.com
+insight ex01.com
+
+
+CONTROLS:
+
+F1: Execute Line	F8 (Insight)
