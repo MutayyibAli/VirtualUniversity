@@ -31,6 +31,8 @@
 *.out
 *.app
 
+# Include NASM files
+!CS401Assembly/*.*
 # Assembly files
 *.com
 *.lst
