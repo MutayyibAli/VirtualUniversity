@@ -1,11 +1,11 @@
-mount n: E:\Sem3\NASM
+mount n: D:\Code\VirtualUniversity\CS401Assembly
 
 n:
 
-nasm ex01.asm -o ex01.com -l ex01.lst
+nasm a.asm -o a.com -l a.lst
 
-afd ex01.com
-insight ex01.com
+afd a01.com
+insight a01.com
 
 
 CONTROLS:
