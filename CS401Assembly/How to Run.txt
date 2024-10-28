@@ -1,11 +1,14 @@
+Use extension NASM
+
+
 mount n: D:\Code\VirtualUniversity\CS401Assembly
 
 n:
 
 nasm a.asm -o a.com -l a.lst
 
-afd a01.com
-insight a01.com
+afd a.com
+insight a.com
 
 
 CONTROLS:

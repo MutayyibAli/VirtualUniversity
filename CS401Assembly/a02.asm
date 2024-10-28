@@ -10,11 +10,11 @@ swap:           db 0                                            ; To check if th
 start:          mov bx, 0                                       ; Initiate BX to zero
                 mov byte [swap], 0                              ; Reset swap flag to no swap
 
-loop1:           mov ax, [data + bx]
+loop1:          mov ax, [data + bx]
                 cmp ax, [data + bx + 2]
                 jbe noswap
 
-    b           mov dx, [data + bx + 2]
+                mov dx, [data + bx + 2]
                 mov [data + bx + 2], ax
                 mov [data + bx], dx
                 mov byte [swap], 1
