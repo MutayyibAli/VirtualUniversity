@@ -1,23 +1,30 @@
-            [org 0x0100]				; Start Program
+; Sorting a list of 10 numbers using bubble Sorting
 
-            mov ax, 5                   ; Move constant to AX Register
-            mov bx, [num1]              ; Move value stored in num1 to BX Register
-            add ax, bx                  ; Add AX to BX and save it to AX
+[org 0x100]
 
-            mov ax, [list1]             ; Move first value from list1 to AX
-            mov bx, [list1 + 2]         ; Move second value from list1 to AX
-            add ax, bx
-            mov bx, [list1 + 4]
-            add ax, bx
-            mov bx, [list1 + 6]
-            add ax, bx
-            mov bx, [list1 + 8]
-            add ax, bx
+                jmp Start                                       ; Jump to location marked as Start
 
-            mov ax, 0x4c00				; Terminate Program
-            int 0x21
+data:           dw 5, 8, 45, -15, 67, 15, 9, -2, 14, 0          ; Data to be sorted
+swap:           db 0                                            ; To check if there is no swap in an iteration then sorting is completed
 
-num1:       dw 10                       ; Make a variable named num1 and initialize it to 10
-list1:      dw 2                       ; Save multiple values like array in a variable
-            dw 4
-            dw 6,8,10
+start:          mov bx, 0                                      ; Initiate BX to zero
+                mov [swap], 0                                  ; Reset swap flag to no swap
+
+loop:           mov ax, [data + bx]
+                cmp ax, [data + bx + 2]
+                jbe noswap
+
+swap:           mov dx, [data + bx + 2]
+                mov [data + bx + 2], ax
+                mov [data + bx], dx
+                mov byte [swap], 1
+
+noswap:         add bx,2
+                cmp bx, 18
+                jne loop
+
+                cmp byte [swap], 1
+                je start
+
+                mov ax, 0x4c00
+                int 0x21
