@@ -17,6 +17,7 @@
 | add ax, bx        | Add ax+bx                              |
 | adc ax, bx        | Add with carry ax+bx+1                 |
 | sub cx, 5         | Subtract cx-5                          |
+| inc cx            | cx+1                                   |
 | dec cx            | cx-1                                   |
 | cmp ax, bx        | Subtract ax-bx (Don't change ax or bx) |
 | xchg ax, bx       | Exchange ax <--> bx                    |
@@ -81,7 +82,7 @@
 
 | Type                               | Example 1       | Example 2  | Example 3 | Example 4 |
 | ---------------------------------- | --------------- | ---------- | --------- | --------- |
-| Direct                             | ax              | bx         | cx        |
+| Direct                             | [ax]            | [bx]       | [cx]      |
 | Based Register Indirect            | [bx]            | [bp]       |
 | Indexed Register Indirect          | [si]            | [di]       |
 | Based Register Indirect + Offset   | [bx + 200]      | [bp + 100] |
