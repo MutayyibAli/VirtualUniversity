@@ -5,7 +5,7 @@
                 jmp start
 
 firstname:      db 0x4D, 0x75, 0x74, 0x61, 0x79, 0x79, 0x69, 0x62, 0x00       ; "Mutayyib"
-count:          db 0
+count:          db 5
 
 countletters:   push bp
                 mov bp, sp
@@ -19,6 +19,9 @@ loop1:          inc si
                 jne loop1
 
                 mov [count], si
+                pop bx
+                pop si
+                pop bp
                 ret 2
 
 start:          mov ax, [firstname]
@@ -26,12 +29,12 @@ start:          mov ax, [firstname]
                 call countletters
 
                 mov ax, 1
-                mov cx, count
+                mov bl, [count]
 
-loop:           shl ax, 1
-                dec cx
-                cmp cx, 0
-                jne loop
+loop2:          shl ax, 1
+                dec bl
+                cmp bl, 0
+                jne loop2
 
                 mov ax, 0x4C00
                 int 0x21
