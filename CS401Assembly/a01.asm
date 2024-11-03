@@ -35,4 +35,4 @@ num1:       dw 10                       ; Make a variable named num1 and initial
 list1:      dw 2                        ; Save multiple values like array in a variable
             dw 4
             dw 6,8,10
-result:     dw 0 0
+result:     dw 0
