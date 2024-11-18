@@ -22,7 +22,7 @@ int main()
     { // Check if this is the parent process
         /* Parent process */
         wait(NULL);                        // Wait for the child process to finish
-        printf("PARENT: value %d", value); // LINE A: Print the value of the global variable in the parent process
+        printf("PARENT: value %d ", value); // LINE A: Print the value of the global variable in the parent process
         exit(0);                           // Exit the parent process
     }
 }
