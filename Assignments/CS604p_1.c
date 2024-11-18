@@ -3,20 +3,18 @@
 #include <string.h>
 #include <stdlib.h> // Added for thread compatibility
 
-#define ARRAY_SIZE 10
-
 // Thread function for T1: Prints array and its squares
 void *thread1_func(void *arg)
 {
     int *array = (int *)arg;
     printf("In First Thread\n");
     printf("Printing the actual contents of array:\n");
-    for (int i = 0; i < ARRAY_SIZE; i++)
+    for (int i = 0; i < 10; i++)
     {
         printf("%d\n", array[i]);
     }
     printf("\nPrinting the squares of numbers in the array:\n");
-    for (int i = 0; i < ARRAY_SIZE; i++)
+    for (int i = 0; i < 10; i++)
     {
         printf("%d^2 = %d\n", array[i], array[i] * array[i]);
     }
@@ -34,18 +32,18 @@ void *thread2_func(void *arg)
         reversed[i] = str[len - i - 1];
     }
     reversed[len] = '\0';
-    printf("\nIn second Thread, Printing the Reverse String...\n");
-    printf("%s\n", reversed);
+    printf("\nIn Second Thread, Printing the Reverse String...\n");
+    printf("%s\n\n", reversed);
     return NULL;
 }
 
 int main()
 {
     pthread_t thread1, thread2;
-    int array[ARRAY_SIZE] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+    int array[10] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
     char str[100];
 
-    // Input string for T2
+    // 
     printf("Enter string to pass T2: ");
     if (scanf("%99s", str) != 1)
     {
