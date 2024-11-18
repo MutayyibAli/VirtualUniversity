@@ -1,28 +1,44 @@
-#include <sys/types.h> // Include header file for system data types (e.g., pid_t)
-#include <stdio.h>     // Include header file for input/output functions (e.g., printf)
-#include <unistd.h>    // Include header file for fork() and other process-related functions
+// Include header file for system data types (e.g., pid_t)
+#include <sys/types.h>
+// Include header file for input/output functions (e.g., printf)
+#include <stdio.h>     
+// Include header file for fork() and other process-related functions
+#include <unistd.h>    
 
-// These lines were not present in the given code, so I added them to make the code compile and run
-#include <sys/wait.h> // Include header file for wait() function
-#include <stdlib.h>   // Include header file for standard library functions (e.g., exit)
+/* These lines were not present in the given code
+so I added them to make the code compile and run */
 
-int value = 5; // Declare and initialize a global integer variable 'value'
+// Include header file for wait() function
+#include <sys/wait.h> 
+// Include header file for standard library functions (e.g., exit)
+#include <stdlib.h>   
+
+// Declare and initialize a global integer variable 'value'
+int value = 5; 
 
 int main()
 {
-    pid_t pid;    // Declare a variable of type pid_t to store the process ID
-    pid = fork(); // Create a new child process; fork() returns 0 for child, >0 for parent, -1 on error
+    // Declare a variable of type pid_t to store the process ID
+    pid_t pid;   
+    // Create a new child process;
+    // fork() returns 0 for child, >0 for parent, -1 on error 
+    pid = fork(); 
 
+    // Check if this is the child process or parent process
     if (pid == 0)
-    { // Check if this is the child process
+    { 
         /* Child process */
-        value += 15; // Increment the global variable 'value' by 15 in the child process
+        // Increment the global variable 'value' by 15 in the child process
+        value += 15; 
     }
     else if (pid > 0)
-    { // Check if this is the parent process
+    {
         /* Parent process */
-        wait(NULL);                        // Wait for the child process to finish
-        printf("PARENT: value %d ", value); // LINE A: Print the value of the global variable in the parent process
-        exit(0);                           // Exit the parent process
+        // Wait for the child process to finish
+        wait(NULL);              
+        // Print the value of the global variable in the parent process           
+        printf("PARENT: value %d ", value); 
+        // Exit the parent process
+        exit(0);                            
     }
 }
