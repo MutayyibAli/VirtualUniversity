@@ -7,7 +7,7 @@
 void *calculate_squares(void *arg)
 {
     int *array = (int *)arg;
-    printf("In First Thread\n");
+    printf("In First Thread:\n");
     printf("Printing the actual array:\n");
     for (int i = 0; i < 10; i++)
     {
@@ -32,8 +32,9 @@ void *reverse_string(void *arg)
         reversed[i] = str[len - i - 1];
     }
     reversed[len] = '\0';
-    printf("\nIn Second Thread, Printing the Reversed string: ");
-    printf("%s\n\n", reversed);
+    printf("\nIn Second Thread:\n");
+    printf("Printing the Reversed string: ");
+    printf("%s\n", reversed);
     return NULL;
 }
 
@@ -50,7 +51,8 @@ int main()
         fprintf(stderr, "Error reading input string.\n");
         return 1;
     }
-
+    printf("\n");
+    
     // Create Thread T1 for calculating squares and printing them
     if (pthread_create(&thread1, NULL, calculate_squares, array) != 0)
     {
