@@ -52,7 +52,7 @@ int main()
         return 1;
     }
     printf("\n");
-    
+
     // Create Thread T1 for calculating squares and printing them
     if (pthread_create(&thread1, NULL, calculate_squares, array) != 0)
     {

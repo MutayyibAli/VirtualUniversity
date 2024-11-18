@@ -1,43 +1,27 @@
-; Assignment 1
+[org 0x100]
 
-[org 0x0100]
+                jmp start                       ; Jump to start of program
 
-                jmp start                                                   ; Jump to the start of the program
+id              db 2, 3, 0, 4, 1, 6, 1, 7, 5    ; Student ID digits excluding "BC"
+sum             db 0                            ; Memory location for storing sum of digits
 
-firstname:      db 0x4D, 0x75, 0x74, 0x61, 0x79, 0x79, 0x69, 0x62, 0x00     ; "Mutayyib" in ASCII
-count:          db 0                                                        ; Count of characters in name
-result:         dw 0                                                        ; Result of the calculation
+start:          xor ax, ax                      ; Clear AX register
 
-countletters:   push bp                                                     ; Save the base pointer to stack
-                mov bp, sp                                                  ; Set the base pointer to the stack pointer
-                push si                                                     ; Save the source index to stack
-                push bx                                                     ; Save the base index to stack
-                mov bx, [bp+4]                                              ; Set the base index to the first character of name
-                mov si, 0                                                   ; Set the source index to 0
+                lea si, [id]                    ; Load the address of studentID array into SI register
+                mov cx, 9                       ; Set the loop counter to 9 (number of digits in studentID)
 
-loop1:          inc si                                                      ; Increment the source index
-                cmp byte [bx+si-1], 0                                       ; Check if the character is null
-                jne loop1                                                   ; If not, repeat the loop
+sum_digits:     add al, [si]                    ; Add the current digit to the sum in AL register
+                inc si                          ; Move to the next digit in the array
+                loop sum_digits                 ; Repeat until all digits are summed
 
-                mov [count], si                                             ; Set the count to the source index
-                pop bx                                                      ; Restore the base index from stack
-                pop si                                                      ; Restore the source index from stack
-                pop bp                                                      ; Restore the base pointer from stack
-                ret 2                                                       ; Return from the function and remove the arguments
+                mov [sum], al                   ; Store the sum in the sum variable
 
-start:          mov ax, [firstname]                                         ; Load the address of the first character of name to ax
-                push ax                                                     ; Push the address to stack
-                call countletters                                           ; Call the countletters function
+                test al, 1                      ; Check if the sum is even or odd using bitwise AND
+                jz even                         ; If zero, the sum is even, jump to even label
+                mov dx, 0                       ; Otherwise, the sum is odd and set DX register to 0
+                jmp done
 
-                mov ax, 1                                                   ; Initialize the ax register to 1
-                mov bl, [count]                                             ; Load the count to bl
+even:           mov dx, 1                       ; Set DX register to 1 if the sum is even
 
-loop2:          shl ax, 1                                                   ; Shift the ax register to the left to multiply by 2
-                dec bl                                                      ; Decrement the count
-                cmp bl, 0                                                   ; Check if the count is 0
-                jne loop2                                                   ; If not, repeat the loop
-
-                mov [result], ax                                            ; Store the result in the result variable
-
-                mov ax, 0x4C00                                              ; Exit the program
-                int 0x21
+done:           mov ax, 0x4C00                  ; Exit the program
+                int 0x21                        ; Call the DOS interrupt to exit the program
