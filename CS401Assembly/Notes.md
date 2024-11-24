@@ -1,7 +1,6 @@
 # Commands
 
 > [org 0x0100] ;Start of Program
-
 > mov ax, 0x4c00 | Terminate Program
 > int 0x21
 
@@ -27,13 +26,13 @@
 | ret               | Return                                 |
 | ret 6             | Return and decrement SP by 6           |
 
-### Jumps
+## Jumps
 
 | Code | Comment             | Opposite |
 | ---- | ------------------- | -------- |
 | jz   | Jump if Zero        | jnz      |
 | je   | Jump if Equal       | jne      |
-| jcxz | Jump if CX = 0      |
+| jcxz | Jump if CX = 0      |          |
 | jc   | Jump if Carry       | jnc      |
 | jo   | Jump if Overflow    | jno      |
 | js   | Jump if Sign        | jns      |
@@ -66,11 +65,11 @@
 | sar  | Shift Arithmetic Right     | sal      |
 | ror  | Rotate Right               | rol      |
 | rcr  | Rotate through Carry Right | rcl      |
-| and  |
-| or   |
-| xor  |
-| not  |
-| test | Selective Bit Testing      |
+| and  |                            |          |
+| or   |                            |          |
+| xor  |                            |          |
+| not  |                            |          |
+| test | Selective Bit Testing      |          |
 
 > **Set the Bit which are to be changes**
 > Selective Bit Clearing -- AND
@@ -82,13 +81,13 @@
 
 | Type                               | Example 1       | Example 2  | Example 3 | Example 4 |
 | ---------------------------------- | --------------- | ---------- | --------- | --------- |
-| Direct                             | [ax]            | [bx]       | [cx]      |
-| Based Register Indirect            | [bx]            | [bp]       |
-| Indexed Register Indirect          | [si]            | [di]       |
-| Based Register Indirect + Offset   | [bx + 200]      | [bp + 100] |
-| Indexed Register Indirect + Offset | [si + 50]       | [di + 36]  |
+| Direct                             | [ax]            | [bx]       | [cx]      |           |
+| Based Register Indirect            | [bx]            | [bp]       |           |           |
+| Indexed Register Indirect          | [si]            | [di]       |           |           |
+| Based Register Indirect + Offset   | [bx + 200]      | [bp + 100] |           |           |
+| Indexed Register Indirect + Offset | [si + 50]       | [di + 36]  |           |           |
 | Base + Index                       | [bx + si]       | [bp + di]  | [bx + di] | [bp + si] |
-| Base + Index + Offset              | [bx + si + 300] |
+| Base + Index + Offset              | [bx + si + 300] |            |           |           |
 
 ## Registers in iAPX88 (8088) (1MB Memory)
 
@@ -105,10 +104,10 @@
 
 | Segment Registers   | Pointer Registers         | Index Registers         |
 | ------------------- | ------------------------- | ----------------------- |
-| CS -- Code Segment  | IP -- Instruction Pointer |
+| CS -- Code Segment  | IP -- Instruction Pointer |                         |
 | DS -- Data Segment  | SI -- Source Index        | DI -- Destination Index |
 | SS -- Stack Segment | SP -- Stack Pointer       | BP -- Base Pointer      |
-| ES -- Extra Segment |
+| ES -- Extra Segment |                           |                         |
 
 > [cs:bx] -- Segment override prefix can be used to change segment association
 
